@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Montserrat", sans-serif;
+  --font-sans: "Inter", sans-serif;
+  --color-ink: #0B0B0C;
+  --color-paper: #FAFAFA;
+  --color-card: #FFFFFF;
+  --color-line: #E4E4E7;
+  --color-muted: #71717A;
+  --color-gk-red: #E3262C;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+}
+
+/* Fluid wide container: keeps crisp equal edges without huge blank side gutters on 1440px-1920px screens */
+.gk-wrap {
+  width: 100%;
+  max-width: 1680px;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 3.8vw, 4rem);
+}
+
+/* Full-screen desktop section framing (accounts for 76px sticky navbar) */
+.gk-screen {
+  scroll-margin-top: 76px;
+}
+
+@media (min-width: 1024px) {
+  .gk-screen {
+    min-height: calc(100svh - 76px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+::selection {
+  background-color: #E3262C;
+  color: #FFFFFF;
+}
+
+a, button, input, select, textarea {
+  text-underline-offset: 3px;
+}
+
+:focus-visible {
+  outline: 2px solid #E3262C;
+  outline-offset: 2px;
+}

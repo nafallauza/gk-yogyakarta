@@ -1,0 +1,497 @@
+import type { RegencyId } from './diyMapPaths.ts';
+
+export type { RegencyId };
+
+export interface DpdRegion {
+  id: RegencyId;
+  name: string;
+  shortName: string;
+  chairperson: string;
+  activeDistricts: number;
+  totalDistricts: number;
+  districtTerm: 'Kemantren' | 'Kapanewon';
+  districts: string[];
+  secretariatAddress: string;
+  whatsappNumber: string;
+  instagramHandle: string;
+  routineSchedule: string;
+  description: string;
+}
+
+export interface ProgramAgenda {
+  id: number;
+  slug: string;
+  title: string;
+  category: 'rutin' | 'event';
+  frequencyLabel: string;
+  regionId: RegencyId | 'diy';
+  scheduleText: string;
+  dateBadge: string;
+  location: string;
+  statusLabel: string;
+  statusTone: 'green' | 'amber' | 'neutral';
+  description: string;
+  posterUrl: string;
+  posterHeadline?: string;
+  posterSub?: string;
+  isPreDesignedPoster?: boolean;
+  ctaLabel: string;
+  isPublished: boolean;
+}
+
+export interface Article {
+  id: number;
+  slug: string;
+  title: string;
+  category: 'kabar' | 'opini' | 'artikel';
+  regionId: RegencyId | 'diy';
+  authorName: string;
+  authorRole: string;
+  publishedLabel: string;
+  readTime: string;
+  coverUrl: string;
+  excerpt: string;
+  paragraphs: string[];
+  pullQuote?: string;
+  subheading?: string;
+  closingParagraph?: string;
+  isPublished: boolean;
+}
+
+export interface CatalogProduct {
+  id: number;
+  slug: string;
+  name: string;
+  category: 'atribut' | 'merch-dpw' | 'produk-kader';
+  regionId: RegencyId | 'diy';
+  sellerLabel: string;
+  priceIdr: number;
+  imageUrl: string;
+  sizes: string[];
+  isActive: boolean;
+}
+
+export interface JoinSubmission {
+  id: number;
+  fullName: string;
+  whatsappNumber: string;
+  regionId: RegencyId;
+  districtName: string;
+  campusOrActivity: string;
+  interests: string[];
+  notes: string;
+  routedStatus: 'baru' | 'dihubungi' | 'selesai';
+  createdAt: string;
+}
+
+export interface SiteSettings {
+  orgName: string;
+  heroHeadline: string;
+  heroSubcopy: string;
+  nextAgendaTitle: string;
+  nextAgendaMeta: string;
+  aboutHeadline: string;
+  aboutBody: string;
+  foundedYear: string;
+  coverageText: string;
+  chairpersonDpw: string;
+  secretariatAddress: string;
+  adminWhatsapp: string;
+  email: string;
+  instagramUrl: string;
+}
+
+export interface BootstrapPayload {
+  settings: SiteSettings;
+  regions: DpdRegion[];
+  programs: ProgramAgenda[];
+  articles: Article[];
+  products: CatalogProduct[];
+}
+
+export const FALLBACK_DATA: BootstrapPayload = {
+  settings: {
+    orgName: 'Garuda Keadilan · DPW DI Yogyakarta',
+    heroHeadline: 'Pewaris juga perintis.',
+    heroSubcopy:
+      'Garuda Keadilan DI Yogyakarta — ruang anak muda Jogja untuk belajar memimpin, berkarya, dan turun langsung di lima kabupaten/kota.',
+    nextAgendaTitle: 'Leadership Camp DIY 2026',
+    nextAgendaMeta: 'Sabtu, 23 Nov · Kaliurang, Sleman · Kuota 60 orang',
+    aboutHeadline: 'Kami tumbuh dari kampus dan kampung di Jogja.',
+    aboutBody:
+      'GK Yogyakarta berdiri tahun 2018, dimulai dari diskusi kecil mahasiswa di sekitar Bulaksumur dan Babarsari. Sekarang pengurus kami ada di lima kabupaten/kota dan rutin mengadakan kaderisasi, kajian, dan aksi sosial.',
+    foundedYear: '2018, Kota Yogyakarta',
+    coverageText: '5 kabupaten/kota, 78 kapanewon',
+    chairpersonDpw: 'Ahmad Rasyid',
+    secretariatAddress: 'Umbulharjo, Kota Yogyakarta',
+    adminWhatsapp: '6281200000000',
+    email: 'jogja@garudakeadilan.id',
+    instagramUrl: 'https://www.instagram.com/gkyogyakarta',
+  },
+  regions: [
+    {
+      id: 'kota-yogyakarta',
+      name: 'Kota Yogyakarta',
+      shortName: 'Kota Yogyakarta',
+      chairperson: 'Ahmad Fauzi',
+      activeDistricts: 14,
+      totalDistricts: 14,
+      districtTerm: 'Kemantren',
+      districts: [
+        'Danurejan', 'Gedongtengen', 'Gondokusuman', 'Gondomanan', 'Jetis', 'Kotagede', 'Kraton',
+        'Mantrijeron', 'Mergangsan', 'Ngampilan', 'Pakualaman', 'Tegalrejo', 'Umbulharjo', 'Wirobrajan',
+      ],
+      secretariatAddress: 'Umbulharjo, Yogyakarta',
+      whatsappNumber: '6281200000001',
+      instagramHandle: '@gkkotajogja',
+      routineSchedule: 'Kajian Pekanan · Setiap Kamis, 19.30 WIB',
+      description:
+        'DPD Kota Yogyakarta menghimpun kader mahasiswa dan pemuda di 14 kemantren. Fokus utama pada ruang diskusi kebijakan kota, penguatan literasi publik, dan aksi sosial lingkungan perkotaan.',
+    },
+    {
+      id: 'sleman',
+      name: 'Kabupaten Sleman',
+      shortName: 'Sleman',
+      chairperson: 'Bagas Prakoso',
+      activeDistricts: 15,
+      totalDistricts: 17,
+      districtTerm: 'Kapanewon',
+      districts: [
+        'Berbah', 'Cangkringan', 'Depok', 'Gamping', 'Godean', 'Kalasan', 'Minggir', 'Mlati',
+        'Moyudan', 'Ngaglik', 'Ngemplak', 'Pakem', 'Prambanan', 'Seyegan', 'Sleman',
+      ],
+      secretariatAddress: 'Jl. Kaliurang Km 7, Sleman',
+      whatsappNumber: '6281200000002',
+      instagramHandle: '@gksleman',
+      routineSchedule: 'Lingkar Kampus · Setiap Jumat, 19.30 WIB',
+      description:
+        'DPD Sleman menjadi simpul utama jaringan mahasiswa lintas kampus utara Jogja dengan fokus kaderisasi kepemimpinan, kajian kebangsaan, dan pengabdian desa lereng Merapi.',
+    },
+    {
+      id: 'bantul',
+      name: 'Kabupaten Bantul',
+      shortName: 'Bantul',
+      chairperson: 'Dimas Santoso',
+      activeDistricts: 11,
+      totalDistricts: 17,
+      districtTerm: 'Kapanewon',
+      districts: [
+        'Bambanglipuro', 'Banguntapan', 'Bantul', 'Imogiri', 'Jetis', 'Kasihan', 'Kretek',
+        'Pajangan', 'Pandak', 'Pleret', 'Sewon',
+      ],
+      secretariatAddress: 'Jl. Parangtritis Km 5, Bantul',
+      whatsappNumber: '6281200000003',
+      instagramHandle: '@gkbantul',
+      routineSchedule: 'Jogja Bergerak · Setiap Ahad, 06.30 WIB',
+      description:
+        'DPD Bantul aktif dalam gerakan tanggap bencana, aksi lingkungan pesisir selatan, serta pemberdayaan pemuda kreatif di kampung dan sentra UMKM.',
+    },
+    {
+      id: 'kulon-progo',
+      name: 'Kabupaten Kulon Progo',
+      shortName: 'Kulon Progo',
+      chairperson: 'Naufal Hakim',
+      activeDistricts: 7,
+      totalDistricts: 12,
+      districtTerm: 'Kapanewon',
+      districts: ['Galur', 'Girimulyo', 'Kokap', 'Lendah', 'Nanggulan', 'Pengasih', 'Wates'],
+      secretariatAddress: 'Wates, Kulon Progo',
+      whatsappNumber: '6281200000004',
+      instagramHandle: '@gkkulonprogo',
+      routineSchedule: 'Diskusi Wirausaha Muda · Dua pekan sekali',
+      description:
+        'DPD Kulon Progo mendorong penguatan ekonomi kreatif pemuda Menoreh, pengolahan kopi lokal kader, dan pendidikan kepemimpinan pelajar.',
+    },
+    {
+      id: 'gunungkidul',
+      name: 'Kabupaten Gunungkidul',
+      shortName: 'Gunungkidul',
+      chairperson: 'Rizky Pratama',
+      activeDistricts: 9,
+      totalDistricts: 18,
+      districtTerm: 'Kapanewon',
+      districts: ['Karangmojo', 'Nglipar', 'Paliyan', 'Patuk', 'Playen', 'Ponjong', 'Semanu', 'Tepus', 'Wonosari'],
+      secretariatAddress: 'Wonosari, Gunungkidul',
+      whatsappNumber: '6281200000005',
+      instagramHandle: '@gkgunungkidul',
+      routineSchedule: 'Aksi Sosial & Kajian · Pekan ke-2 & ke-4',
+      description:
+        'DPD Gunungkidul berfokus pada solidaritas air bersih, pengabdian masyarakat pesisir karst, dan pembinaan generasi muda di Wonosari dan sekitarnya.',
+    },
+  ],
+  programs: [
+    {
+      id: 1,
+      slug: 'kajian-diskusi-pekanan',
+      title: 'Kajian & Diskusi Pekanan',
+      category: 'rutin',
+      frequencyLabel: 'PEKANAN',
+      regionId: 'diy',
+      scheduleText: 'Setiap Kamis · 19.30',
+      dateBadge: 'PEKANAN',
+      location: 'Sekretariat DPW / Online',
+      statusLabel: 'Terbuka untuk umum',
+      statusTone: 'green',
+      description: 'Ruang belajar rutin lintas bidang di Sekretariat DPW & online.',
+      posterUrl: '/images/rakernas.jpg',
+      ctaLabel: 'Ikut',
+      isPublished: true,
+    },
+    {
+      id: 2,
+      slug: 'jogja-bergerak',
+      title: 'Jogja Bergerak',
+      category: 'rutin',
+      frequencyLabel: 'PEKANAN',
+      regionId: 'diy',
+      scheduleText: 'Setiap Ahad · 06.30',
+      dateBadge: 'PEKANAN',
+      location: 'Alun-Alun & DPD Kab/Kota',
+      statusLabel: 'Terbuka',
+      statusTone: 'green',
+      description: 'Olahraga pagi dan aksi sosial bersama kader DPD kabupaten/kota.',
+      posterUrl: '/images/media3.jpg',
+      ctaLabel: 'Ikut',
+      isPublished: true,
+    },
+    {
+      id: 3,
+      slug: 'ngaji-kebangsaan',
+      title: 'Ngaji Kebangsaan',
+      category: 'rutin',
+      frequencyLabel: 'BULANAN',
+      regionId: 'kota-yogyakarta',
+      scheduleText: 'Pekan ke-2 · Umum',
+      dateBadge: 'BULANAN',
+      location: 'Kota Yogyakarta',
+      statusLabel: 'Umum',
+      statusTone: 'neutral',
+      description: 'Diskusi bulanan soal isu kota, kepemudaan, dan kebijakan DIY.',
+      posterUrl: '/images/media4.jpg',
+      ctaLabel: 'Detail',
+      isPublished: true,
+    },
+    {
+      id: 4,
+      slug: 'leadership-camp-goes-to-campus',
+      title: 'Leadership Camp & Goes to Campus',
+      category: 'rutin',
+      frequencyLabel: 'PER SEMESTER',
+      regionId: 'sleman',
+      scheduleText: 'Anggota & Mahasiswa',
+      dateBadge: 'SEMESTER',
+      location: 'Kampus-kampus DIY',
+      statusLabel: 'Kaderisasi',
+      statusTone: 'neutral',
+      description: 'Kaderisasi 3 hari untuk anggota baru serta roadshow kampus DIY.',
+      posterUrl: '/images/hero.jpg',
+      ctaLabel: 'Detail',
+      isPublished: true,
+    },
+    {
+      id: 5,
+      slug: 'leadership-camp-diy-2026',
+      title: 'Leadership Camp DIY 2026',
+      category: 'event',
+      frequencyLabel: 'EVENT',
+      regionId: 'sleman',
+      scheduleText: 'Sab, 23 Nov · Kaliurang, Sleman',
+      dateBadge: '23 NOV 2026',
+      location: 'Kaliurang, Sleman',
+      statusLabel: 'Sisa 18 kursi',
+      statusTone: 'green',
+      description: 'Pelatihan kepemimpinan 3 hari untuk anggota baru GK se-DI Yogyakarta.',
+      posterUrl: '/images/poster-rinjani.jpg',
+      isPreDesignedPoster: true,
+      ctaLabel: 'Daftar',
+      isPublished: true,
+    },
+    {
+      id: 6,
+      slug: 'diskusi-kebangsaan-jogja',
+      title: 'Diskusi Kebangsaan Jogja',
+      category: 'event',
+      frequencyLabel: 'EVENT',
+      regionId: 'kota-yogyakarta',
+      scheduleText: 'Sab, 30 Nov · Kota Yogyakarta',
+      dateBadge: '30 NOV 2026',
+      location: 'Kedai Kopi · Kota Yogyakarta',
+      statusLabel: 'Terbuka untuk umum',
+      statusTone: 'green',
+      description: 'Bincang santai soal anak muda, ruang kerja, dan biaya hidup di Jogja.',
+      posterUrl: '/images/media3.jpg',
+      posterHeadline: 'DISKUSI KEBANGSAAN',
+      posterSub: 'Anak Muda & Biaya Hidup di Jogja',
+      ctaLabel: 'Daftar',
+      isPublished: true,
+    },
+    {
+      id: 7,
+      slug: 'bersih-pantai-parangtritis',
+      title: 'Bersih Pantai Parangtritis',
+      category: 'event',
+      frequencyLabel: 'EVENT',
+      regionId: 'bantul',
+      scheduleText: 'Min, 07 Des · Bantul',
+      dateBadge: '07 DES 2026',
+      location: 'Parangtritis · Bantul',
+      statusLabel: 'Butuh 40 relawan',
+      statusTone: 'amber',
+      description: 'Aksi lingkungan bersih pesisir selatan bersama relawan pemuda Bantul.',
+      posterUrl: '/images/article.jpg',
+      posterHeadline: 'JOGJA PEDULI: BERSIH PANTAI',
+      posterSub: 'Aksi Lingkungan Pesisir Selatan',
+      ctaLabel: 'Daftar',
+      isPublished: true,
+    },
+    {
+      id: 8,
+      slug: 'rakerwil-gk-diy-2026',
+      title: 'Rapat Kerja Wilayah 2026',
+      category: 'event',
+      frequencyLabel: 'EVENT',
+      regionId: 'diy',
+      scheduleText: 'Sab, 14 Des · Sekretariat DPW',
+      dateBadge: '14 DES 2026',
+      location: 'Sekretariat DPW · DIY',
+      statusLabel: 'Khusus pengurus',
+      statusTone: 'neutral',
+      description: 'Konsolidasi program kerja wilayah DPW dan lima DPD se-DIY.',
+      posterUrl: '/images/rakernas.jpg',
+      posterHeadline: 'RAKERWIL GK DIY 2026',
+      posterSub: 'Konsolidasi Program Wilayah & DPD',
+      ctaLabel: 'Detail',
+      isPublished: true,
+    },
+  ],
+  articles: [
+    {
+      id: 1,
+      slug: 'jogja-istimewa-lulusan-muda-cari-kerja',
+      title: 'Jogja istimewa, tapi lulusan mudanya susah cari kerja di sini.',
+      category: 'opini',
+      regionId: 'diy',
+      authorName: 'Tim Kajian GK DIY',
+      authorRole: 'Bidang Kajian DPW DI Yogyakarta',
+      publishedLabel: '12 Nov 2026',
+      readTime: '5 menit baca',
+      coverUrl: '/images/article.jpg',
+      excerpt:
+        'Setiap tahun puluhan ribu mahasiswa menyelesaikan studi di Yogyakarta, namun ekosistem kerja lokal belum sebanding dengan laju lulusan.',
+      paragraphs: [
+        'Setiap tahun puluhan ribu mahasiswa menyelesaikan studi di Yogyakarta. Sebagian besar jatuh cinta pada ritme kotanya, tetapi ketika mulai mencari pekerjaan tetap yang layak, hampir semuanya dihadapkan pada pilihan yang sama: merantau ke Jakarta atau bertahan dengan upah yang tertinggal dari kenaikan biaya hidup.',
+        'Persoalannya bukan kekurangan talenta muda. Jogja justru menjadi salah satu lumbung sumber daya manusia terdidik terbesar di Indonesia. Tantangan utamanya adalah jarak antara ruang pendidikan tinggi dengan ekosistem industri kreatif, teknologi, dan kewirausahaan lokal yang mampu menyerap lulusan baru secara berkelanjutan.',
+      ],
+      pullQuote:
+        'Anak muda Jogja tidak kekurangan gagasan. Yang mendesak adalah jembatan konkret antara komunitas kampus, usaha warga, dan kebijakan daerah.',
+      subheading: 'Mulai dari lingkar kampus dan kabupaten',
+      closingParagraph:
+        'Lewat forum diskusi bulanan Ngaji Kebangsaan dan jejaring usaha kader di lima kabupaten/kota, Garuda Keadilan DIY mendorong anak muda agar tidak hanya menjadi penonton kebijakan, melainkan aktif membangun jejaring kerja, inkubasi usaha kecil, serta advokasi ruang kerja layak di daerah masing-masing.',
+      isPublished: true,
+    },
+    {
+      id: 2,
+      slug: 'ratusan-pemuda-bersih-malioboro',
+      title: 'Ratusan pemuda ikut bersih-bersih Malioboro jelang libur akhir tahun',
+      category: 'kabar',
+      regionId: 'kota-yogyakarta',
+      authorName: 'Humas DPD Kota Yogyakarta',
+      authorRole: 'DPD Kota Yogyakarta',
+      publishedLabel: '10 Nov 2026',
+      readTime: '3 menit baca',
+      coverUrl: '/images/media3.jpg',
+      excerpt: 'Kolaborasi kader dari 14 kemantren membersihkan koridor pedestrian Malioboro bersama pedagang setempat.',
+      paragraphs: [
+        'Lebih dari 120 pemuda dari 14 kemantren di Kota Yogyakarta turun langsung membersihkan koridor Malioboro sejak pukul 06.00 WIB. Aksi ini melibatkan komunitas lingkungan dan paguyuban pedagang setempat.',
+        'Selain pemilahan sampah organik dan anorganik, peserta juga membagikan kantong guna ulang kepada pengunjung pagi sebagai kampanye wisata bersih menjelang libur akhir tahun.',
+      ],
+      isPublished: true,
+    },
+    {
+      id: 3,
+      slug: 'cara-mahasiswa-rantau-aktif-berorganisasi',
+      title: 'Cara mahasiswa rantau aktif berorganisasi tanpa keteteran kuliah',
+      category: 'artikel',
+      regionId: 'sleman',
+      authorName: 'Nadia Kusuma',
+      authorRole: 'Kaderisasi DPD Sleman',
+      publishedLabel: '04 Nov 2026',
+      readTime: '4 menit baca',
+      coverUrl: '/images/media4.jpg',
+      excerpt: 'Tips membagi jadwal akademik, jejaring sosial, dan kontribusi komunitas bagi mahasiswa perantau di Jogja.',
+      paragraphs: [
+        'Aktif di organisasi pemuda sering dianggap menyita waktu kuliah, padahal dengan pembagian ritme mingguan yang jelas justru melatih manajemen waktu dan jejaring nyata.',
+        'Mulailah dari satu agenda pekanan yang konsisten, pilih peran sesuai minat, dan bangun kebiasaan mencatat prioritas kuliah sejak awal semester.',
+      ],
+      isPublished: true,
+    },
+    {
+      id: 4,
+      slug: 'dpd-sleman-lantik-pengurus-2026-2028',
+      title: 'DPD Sleman lantik pengurus periode 2026–2028',
+      category: 'kabar',
+      regionId: 'sleman',
+      authorName: 'Sekretariat DPW DIY',
+      authorRole: 'DPW DI Yogyakarta',
+      publishedLabel: '28 Okt 2026',
+      readTime: '3 menit baca',
+      coverUrl: '/images/rakernas.jpg',
+      excerpt: 'Pengurus baru DPD Sleman menargetkan penguatan kaderisasi di 17 kapanewon dan kolaborasi kampus utara.',
+      paragraphs: [
+        'Pelantikan pengurus DPD Garuda Keadilan Kabupaten Sleman periode 2026–2028 dihadiri perwakilan 15 kapanewon aktif serta jajaran pengurus DPW DIY.',
+        'Program kerja prioritas tahun pertama berfokus pada kelas kepemimpinan mahasiswa baru, literasi kebijakan publik, dan pengembangan usaha kader muda.',
+      ],
+      isPublished: true,
+    },
+  ],
+  products: [
+    {
+      id: 1,
+      slug: 'rompi-gaskan-gk-diy',
+      name: 'Rompi GASKAN! GK DIY',
+      category: 'atribut',
+      regionId: 'diy',
+      sellerLabel: 'Atribut resmi DPW',
+      priceIdr: 165000,
+      imageUrl: '/images/merch-rompi.jpg',
+      sizes: ['M', 'L', 'XL'],
+      isActive: true,
+    },
+    {
+      id: 2,
+      slug: 'totebag-setara-selevel',
+      name: 'Totebag Setara Selevel',
+      category: 'merch-dpw',
+      regionId: 'diy',
+      sellerLabel: 'Merch resmi DPW',
+      priceIdr: 65000,
+      imageUrl: '/images/merch-totebag.png',
+      sizes: ['All Size'],
+      isActive: true,
+    },
+    {
+      id: 3,
+      slug: 'kopi-robusta-menoreh',
+      name: 'Kopi Robusta Menoreh 250g',
+      category: 'produk-kader',
+      regionId: 'kulon-progo',
+      sellerLabel: 'Kader Kulon Progo',
+      priceIdr: 45000,
+      imageUrl: '/images/merch-kopi.png',
+      sizes: ['Bubuk', 'Biji'],
+      isActive: true,
+    },
+    {
+      id: 4,
+      slug: 'jaket-korsa-gk-yogyakarta',
+      name: 'Jaket Korsa GK Yogyakarta',
+      category: 'atribut',
+      regionId: 'diy',
+      sellerLabel: 'Atribut resmi DPW',
+      priceIdr: 240000,
+      imageUrl: '/images/hero.jpg',
+      sizes: ['M', 'L', 'XL', 'XXL'],
+      isActive: true,
+    },
+  ],
+};
